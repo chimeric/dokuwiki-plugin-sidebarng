@@ -1,0 +1,45 @@
+/**
+ * CSS for the DokuWiki SidebarNG plugin
+ */
+
+div.dokuwiki div.left_sidebar {
+  float: left;
+  width: 23%;
+  padding: 0.2em 0.5em 0 0;
+}
+
+div.dokuwiki div.right_sidebar {
+  float: right;
+  width: 23%;
+  padding: 0.2em 0em 0 0.5em;
+}
+
+div.dokuwiki div.page_right {
+  width: 75%;
+  float: right;
+  border-left: 1px solid  __border__;
+  padding-left: 1%;
+}
+
+div.dokuwiki div.page_left {
+  float: left;
+  width: 75%;
+  border-right: 1px solid  __border__;
+  padding-right: 1%;
+}
+
+div.dokuwiki div.left_sidebar div.sidebar_box {
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+div.dokuwiki div.right_sidebar div.sidebar_box {
+  width: 100%;
+  float: right;
+  clear: both;
+}
+
+div.dokuwiki div.sidebar_box ul {
+  margin-left: 1.2em;
+}
