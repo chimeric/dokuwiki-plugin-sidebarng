@@ -38,25 +38,36 @@ class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
 
     function _before(&$event, $param) {
         $pos = $this->getConf('pos');
-        if($pos == 'left') {
-            print '<div class="' . $pos . '_sidebar">' . DOKU_LF;
-            $this->p_sidebar($pos);
-            print '</div>' . DOKU_LF;
-            print '<div class="page_right">' . DOKU_LF;
+        ob_start();
+        $this->p_sidebar($pos);
+        $this->sidebar = ob_get_contents();
+        if(empty($this->sidebar) && !$this->getConf('main_always')) {
+            print '<div class="page">' . DOKU_LF;
         } else {
-            print '<div class="page_left">' . DOKU_LF;
+            if($pos == 'left') {
+                    print '<div class="' . $pos . '_sidebar">' . DOKU_LF;
+                    print $sidebar;
+                    print '</div>' . DOKU_LF;
+                    print '<div class="page_right">' . DOKU_LF;
+            } else {
+                print '<div class="page_left">' . DOKU_LF;
+            }
         }
     }
 
     function _after(&$event, $param) {
         $pos = $this->getConf('pos');
-        if($pos == 'left') {
-            print '</div>'; 
-        } else {
+        if(empty($this->sidebar) && !$this->getConf('main_always')) {
             print '</div>' . DOKU_LF;
-            print '<div class="' . $pos . '_sidebar">' . DOKU_LF;
-            $this->p_sidebar($pos);
-            print '</div>'. DOKU_LF;
+        } else {
+            if($pos == 'left') {
+            print '</div>' . DOKU_LF; 
+            } else {
+                print '</div>' . DOKU_LF;
+                print '<div class="' . $pos . '_sidebar">' . DOKU_LF;
+                $this->p_sidebar($pos);
+                print '</div>'. DOKU_LF;
+            }
         }
     }
 
