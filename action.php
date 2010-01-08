@@ -19,17 +19,6 @@ require_once(DOKU_PLUGIN.'action.php');
  */
 class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
 
-    function getInfo() {
-        return array(
-                'author' => 'Michael Klier',
-                'email'  => 'chi@chimeric.de',
-                'date'   => @file_get_contents(DOKU_PLUGIN.'uparrow/VERSION'),
-                'name'   => 'SidebarNG Plugin (action component)',
-                'desc'   => 'Automatically adds a flexible sidebar to your template',
-                'url'    => 'http://dokuwiki.org/plugin:sidebarng',
-            );
-    }
-
     // register hook
     function register(&$controller) {
         $controller->register_hook('TPL_CONTENT_DISPLAY', 'BEFORE', $this, '_before');

@@ -1,0 +1,8 @@
+# General Plugin Info do not edit
+base   sidebarng
+author Michael Klier
+email  chi@chimeric.de
+date   2010-01-08
+name   SidebarNG Plugin
+desc   Automatically adds a flexible sidebar to your template
+url    http://www.dokuwiki.org/plugin:sidebarng
