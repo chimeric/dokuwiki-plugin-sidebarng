@@ -27,15 +27,18 @@ class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
 
     function _before(&$event, $param) {
         $pos = $this->getConf('pos');
+
         ob_start();
         $this->p_sidebar($pos);
         $this->sidebar = ob_get_contents();
+        ob_end_clean();
+
         if(empty($this->sidebar) && !$this->getConf('main_always')) {
             print '<div class="page">' . DOKU_LF;
         } else {
             if($pos == 'left') {
                     print '<div class="' . $pos . '_sidebar">' . DOKU_LF;
-                    print $sidebar;
+                    print $this->sidebar;
                     print '</div>' . DOKU_LF;
                     print '<div class="page_right">' . DOKU_LF;
             } else {
@@ -54,7 +57,7 @@ class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
             } else {
                 print '</div>' . DOKU_LF;
                 print '<div class="' . $pos . '_sidebar">' . DOKU_LF;
-                $this->p_sidebar($pos);
+                print $this->sidebar;
                 print '</div>'. DOKU_LF;
             }
         }
