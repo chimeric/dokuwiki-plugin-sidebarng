@@ -166,7 +166,7 @@ class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
 
             case 'group':
                 $group_ns = $this->getConf('group_ns');
-                if(isset($INFO['userinfo']['name'], $INFO['userinfo']['grps'])) {
+                if(isset($INFO['userinfo']['grps'])) {
                     foreach($INFO['userinfo']['grps'] as $grp) {
                         $group_sb = $group_ns.':'.$grp.':'.$pname;
                         if(@page_exists($group_sb) && auth_quickaclcheck(cleanID($group_sb)) >= AUTH_READ) {
@@ -175,6 +175,13 @@ class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
                             print $this->p_sidebar_xhtml($group_sb,$pos,$subst) . DOKU_LF;
                             print '</div>' . DOKU_LF;
                         }
+                    }
+                } else {
+                    $group_sb = $group_ns.':all:'.$pname;
+                    if(@page_exists($group_sb) && auth_quickaclcheck(cleanID($group_sb)) >= AUTH_READ) {
+                        print '<div class="group_sidebar sidebar_box">' . DOKU_LF;
+                        print $this->p_sidebar_xhtml($group_sb,$pos,$subst) . DOKU_LF;
+                        print '</div>' . DOKU_LF;
                     }
                 }
                 break;
