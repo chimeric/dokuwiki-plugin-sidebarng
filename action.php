@@ -111,12 +111,14 @@ class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
 
             case 'main':
                 $main_sb = $pname;
-                if(@page_exists($main_sb) && auth_quickaclcheck($main_sb) >= AUTH_READ) {
-                    $always = $this->getConf('main_always');
-                    if($always or (!$always && !getNS($ID))) {
-                        print '<div class="main_sidebar sidebar_box">' . DOKU_LF;
-                        print $this->p_sidebar_xhtml($main_sb,$pos) . DOKU_LF;
-                        print '</div>' . DOKU_LF;
+                if(@page_exists($main_sb)) {
+                    if(auth_quickaclcheck($main_sb) >= AUTH_READ) {
+                        $always = $this->getConf('main_always');
+                        if($always or (!$always && !getNS($ID))) {
+                            print '<div class="main_sidebar sidebar_box">' . DOKU_LF;
+                            print $this->p_sidebar_xhtml($main_sb,$pos) . DOKU_LF;
+                            print '</div>' . DOKU_LF;
+                        }
                     }
                 } else {
                     $out = $this->locale_xhtml('nosidebar');
