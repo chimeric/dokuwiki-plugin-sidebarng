@@ -20,7 +20,7 @@ require_once(DOKU_PLUGIN.'action.php');
 class action_plugin_sidebarng extends DokuWiki_Action_Plugin {
 
     // register hook
-    function register(&$controller) {
+    function register(Doku_Event_Handler $controller) {
         $controller->register_hook('TPL_CONTENT_DISPLAY', 'BEFORE', $this, '_before');
         $controller->register_hook('TPL_CONTENT_DISPLAY', 'AFTER', $this, '_after');
     }
